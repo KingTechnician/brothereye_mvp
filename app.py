@@ -41,6 +41,9 @@ api_link = "https://brothereye-cloud.onrender.com"
 
 api_key = os.getenv("BROTHEREYE_API_KEY")
 
+if "BROTHEREYE_API_KEY" in st.secrets:
+    api_key = st.secrets["BROTHEREYE_API_KEY"]
+
 headers = {
     "Authorization": f"Bearer {api_key}",
     "Content-Type": "application/json"
