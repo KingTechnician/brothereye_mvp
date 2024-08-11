@@ -10,6 +10,7 @@ import pdfkit
 from markdown_pdf import MarkdownPdf,Section
 from fpdf import FPDF
 from dotenv import load_dotenv
+import streamlit.components.v1 as components
 
 load_dotenv()
 
@@ -299,8 +300,9 @@ def geo():
             buffer = io.BytesIO()
             pdf.save(buffer)
 
+            components.html(f"<a href='data:application/octet-stream;base64,{base64.b64encode(buffer.getvalue()).decode()}' download='Brothereye Location Report {geo_job['id']}.pdf'>Click here to download the PDF</a>",height=50)
 
-            st.markdown(create_download_link(buffer.getvalue(),f"Brothereye Location Report {geo_job['id']}"),unsafe_allow_html=True)
+#            st.markdown(create_download_link(buffer.getvalue(),f"Brothereye Location Report {geo_job['id']}"),unsafe_allow_html=True)
 
 
 def people():
